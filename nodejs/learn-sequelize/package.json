@@ -1,0 +1,21 @@
+{
+  "name": "learn-sequelize",
+  "version": "0.0.1",
+  "description": "시퀄라이즈를 학습",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "author": "KiHoon",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.3.0",
+    "nunjucks": "^3.2.3",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
