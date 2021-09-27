@@ -5,14 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
+    <style>
+      #profile{
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: antiquewhite;
+        width: 350px; 
+        height: 1000px;
+        text-align: center;
+        float: left;
+      }
+      #content{
+        background-color: azure;
+        margin-left: 10px;
+        padding: 10px;
+        text-align: center;
+        width: 1000px;
+        height: fit-content;
+        float: left;
+      }
+    </style>
   </head>
   <body>
-    <h1>{{blogName}}</h1>
-    <img src="./profileImg/img" alt="프로필 이미지를 등록해주세요.">
-    <p>Profile</p>
-    <p>{{nickName}}</p>
-    <p>{{email}}</p>
-    <p>{{phone}}</p>
-    <p>{{SNS}}</p>
+    <div id="profile">
+      <h1>블로그 이름:{{blogName}}</h1>
+      <img src="../profileImg/img.png" alt="프로필 이미지를 등록해주세요." />
+      <p>Profile</p>
+      <p>이름:{{nickName}}</p>
+      <p>이메일:{{email}}</p>
+      <p>연락처:{{phone}}</p>
+      <p>SNS:{{SNS}}</p>
+      <hr>
+      <p>카테고리</p>
+    </div>
+    
+    <div id="content">
+      <h2>title</h2>
+      <p>content</p>
+    </div>
+    
+    
   </body>
 </html>

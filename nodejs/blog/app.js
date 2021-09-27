@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 const path = require("path");
 const nunjucks = require("nunjucks");
 
+const { sequelize } = require('./models');
+
 const multer = require("multer");
 const fs = require("fs");
 
@@ -38,6 +40,16 @@ nunjucks.configure("views", {
   watch: true,
 });
 
+sequelize.sync({force : false})
+  .then(()=>{
+    console.log('db connect');
+  })
+  .catch((err)=>{
+    console.log('db 연결 실패')
+    console.error(err);
+  });
+
+
 app.use(morgan("dev"));
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -56,6 +68,11 @@ app.use(
   })
 );
 app.get("/", (req, res) => {
+  res.locals.blogName = '테스트 중';
+  res.locals.title = '블로그 만드는중';
+  res.locals.nickName = '남기훈';
+  res.locals.email = 'nam_0510@naver.com';
+  res.locals.phone = '010-6661-1259';
   res.render("layout");
 });
 
