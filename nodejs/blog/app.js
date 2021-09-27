@@ -5,8 +5,10 @@ const session = require("express-session");
 const dotenv = require("dotenv");
 const path = require("path");
 const nunjucks = require("nunjucks");
+const passport = require('passport');
 
 const { sequelize } = require('./models');
+const passportConfig = require('./passport');
 
 const multer = require("multer");
 const fs = require("fs");
