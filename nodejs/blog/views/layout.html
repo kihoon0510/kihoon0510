@@ -37,6 +37,10 @@
       <p>이름:{{nickName}}</p>
       <p>이메일:{{email}}</p>
       <p>연락처:{{phone}}</p>
+
+      <form action="/auth/logout" method="GET">
+        <input type="submit">
+      </form>
       <!--로그인 전 보여줄 화면-->
       {% else %}
       <form
