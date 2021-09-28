@@ -1,46 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
     <style>
-      #profile{
+      #profile {
         padding-left: 20px;
         padding-right: 20px;
-        background-color: antiquewhite;
-        width: 350px; 
+        background-color: rgb(253, 244, 232);
+        width: 350px;
         height: 1000px;
         text-align: center;
         float: left;
       }
-      #content{
+      #content {
         background-color: azure;
         margin-left: 10px;
         padding: 10px;
         text-align: center;
-        width: 1000px;
+        width: 1500px;
         height: fit-content;
-        float: left;
       }
     </style>
   </head>
   <body>
     <div id="profile">
-      <h1>블로그 이름:{{blogName}}</h1>
+      <div>
+        <a href="/" style="font-size: 40px; padding-bottom: 100px;">{{blogName}}</a>
+      </div>
+      {% if user and user.id %}
+      <!-- 로그인 시 보여줌 -->
       <img src="../profileImg/img.png" alt="프로필 이미지를 등록해주세요." />
-      <p>Profile</p>
+      <h3>Profile</h3>
       <p>이름:{{nickName}}</p>
       <p>이메일:{{email}}</p>
       <p>연락처:{{phone}}</p>
-      <p>SNS:{{SNS}}</p>
-      <hr>
-      <p>카테고리</p>
+      <!--로그인 전 보여줄 화면-->
+      {% else %}
+      <form
+        id="login-form"
+        action="/auth/login"
+        method="POST"
+        style="text-align: right; padding-right: 50px"
+      >
+        <div class="input-group" style="padding-bottom: 5px">
+          <label for="id">아이디</label>
+          <input id="id" type="text" name="id" required autofocus />
+        </div>
+        <div class="input-group" style="padding-bottom: 15px">
+          <label for="password">비밀번호</label>
+          <input id="password" type="password" name="password" required />
+        </div>
+        <a id="join" href="/join" class="btn" style="padding-right: 10px"
+          >회원가입</a
+        >
+        <button id="login" type="submit" class="btn">로그인</button>
+      </form>
+      {% endif %}
+
+      <hr />
+      <h4>Category</h4>
+      <p>-전체글-</p>
     </div>
     <div id="content">
-      <h2>title</h2>
-      <p>content</p>
+      {% block content %} {% endblock %} 
     </div>
   </body>
 </html>

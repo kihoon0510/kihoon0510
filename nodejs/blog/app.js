@@ -7,11 +7,11 @@ const path = require("path");
 const nunjucks = require("nunjucks");
 const passport = require('passport');
 
-const { sequelize } = require('./models');
-const passportConfig = require('./passport');
+
 
 const multer = require("multer");
 const fs = require("fs");
+
 
 try {
   fs.readdirSync("uploads");
@@ -34,7 +34,15 @@ const upload = multer({
 });
 
 dotenv.config();
+
+const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth');
+const { sequelize } = require('./models');
+const passportConfig = require('./passport');
+
+
 const app = express();
+passportConfig();
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "html");
 nunjucks.configure("views", {
@@ -69,14 +77,11 @@ app.use(
     name: "session-cookie",
   })
 );
-app.get("/", (req, res) => {
-  res.locals.blogName = '테스트 중';
-  res.locals.title = '블로그 만드는중';
-  res.locals.nickName = '남기훈';
-  res.locals.email = 'nam_0510@naver.com';
-  res.locals.phone = '010-6661-1259';
-  res.render("layout");
-});
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/',pageRouter);
+app.use('/auth',authRouter);
 
 app.get("/upload", (req, res) => {
   res.sendFile(path.join(__dirname, "./views/login.html"));
