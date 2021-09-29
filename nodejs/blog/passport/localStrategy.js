@@ -13,7 +13,7 @@ module.exports = () => {
       async (id, password, done) => {
         try {
           const exUser = await User.findOne({ where: { id } });
-          console.log('exUser: ',exUser);
+          console.log("exUser: ", exUser);
           if (exUser) {
             const result = await bcrypt.compare(password, exUser.password);
             if (result) {
