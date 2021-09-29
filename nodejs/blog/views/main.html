@@ -1,7 +1,23 @@
 {% extends 'layout.html' %}
-
 {% block content %}
-    <p>--test--</p>
+{% if user %}
+    <form>
+        <div>
+            <textarea></textarea>
+        </div>
+    </form>
+
+{% else %}
+    <p>-------</p>
     <p>메인 화면</p>
-    <P>--test--</P>
+    <p>temp: {{temp}}</p>
+    <pre>
+블로그를 만들어 보세요.
+
+1. 회원가입
+2. 개시글 작성
+</pre>
+    <P>-------</P>
+
+{% endif %}
 {% endblock %}

@@ -7,7 +7,7 @@ const User = require('../models/user');
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async(req,res,next)=>{
-    const {id, nickname, password, blogName} = req.body;
+    const {id, nickname, password, blogName, email, phone} = req.body;
     try{
         const exUser = await User.findOne({where:{id}});
         if(exUser){
@@ -19,6 +19,8 @@ router.post('/join', isNotLoggedIn, async(req,res,next)=>{
             nickname,
             password: hash,
             blogName,
+            email,
+            phone,
         });
         return res.redirect('/');
     } catch(err){
@@ -41,9 +43,9 @@ router.post('/login', isNotLoggedIn,(req,res,next)=>{
                 console.error(loginError);
                 return next(loginError);
             }
-            return res.redirect('/');
+            return res.redirect(`/${req.user.id}/`);
         });
-    })(req,res,next);    
+    })(req,res,next);
 });
 
 router.get('/logout',isLoggedIn,(req,res)=>{

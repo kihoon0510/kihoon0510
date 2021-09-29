@@ -37,6 +37,7 @@ dotenv.config();
 
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
