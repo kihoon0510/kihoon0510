@@ -29,7 +29,7 @@
     <div id="profile">
       <div>
         <!-- <a href="/" style="font-size: 40px; padding-bottom: 100px;">{{blogName}}</a> -->
-        <h1 style="padding-bottom: 100px;">{{blogName}}</h1>
+        <h1 style="padding-bottom: 100px">{{blogName}}</h1>
       </div>
       {% if user and user.id %}
       <!-- 로그인 시 보여줌 -->
@@ -38,6 +38,10 @@
       <p>이름:{{nickName}}</p>
       <p>이메일:{{email}}</p>
       <p>연락처:{{phone}}</p>
+
+      <form action="./write" method="GET">
+        <button id="write" type="submit" class="btn">글작성</button>
+      </form>
 
       <form action="/auth/logout" method="GET">
         <button id="logout" type="submit" class="btn">로그아웃</button>
@@ -68,11 +72,13 @@
       <hr />
       <h4>Category</h4>
       <p>-전체글-</p>
+      <div style="padding-top: 300px">
+        <footer style="background-color: rgb(121, 121, 121)">
+          Copyright kihoon. All rights reserved.
+        </footer>
+      </div>
     </div>
     <!-- 본문 내용 -->
-    <div id="content">
-      {% block content %} {% endblock %} 
-    </div>
-    <footer style="float: left; background-color: rgb(121, 121, 121);">Copyright kihoon. All rights reserved.</footer>
+    <div id="content">{% block content %} {% endblock %}</div>
   </body>
 </html>

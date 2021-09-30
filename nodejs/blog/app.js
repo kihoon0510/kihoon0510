@@ -84,15 +84,6 @@ app.use(passport.session());
 app.use('/',pageRouter);
 app.use('/auth',authRouter);
 
-app.get("/upload", (req, res) => {
-  res.sendFile(path.join(__dirname, "./views/login.html"));
-});
-
-app.post("/upload", upload.single("image"), (req, res) => {
-  console.log(req.file, req.body);
-  res.send("ok");
-});
-
 app.use((req, res, next) => {
   const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
   error.status = 404;

@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+    <div id="board_write">
+      <div id="write_area">
+        <form
+          action= "./write"
+          method="post"
+        >
+          <div id="in_title">
+            <textarea
+              name="title"
+              id="title"
+              rows="1"
+              cols="55"
+              placeholder="제목"
+              maxlength="100"
+              required
+            ></textarea>
+          </div>
+
+          <div class="wi_line"></div>
+          <div id="in_content">
+            <textarea
+              name="content"
+              id="ucontent"
+              placeholder="내용"
+              required
+            ></textarea>
+          </div>
+          <div class="bt_se">
+            <button type="submit">글 작성</button>
+          </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}
